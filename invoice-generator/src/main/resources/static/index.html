@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Generator</title>
+</head>
+<body>
+<div id="header">
+    <div id="logo"></div>
+</div>
+<div id="content">
+    <h1>Invoice Generator</h1>
+    <form id="invoiceForm">
+        <div id="customerDetails">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="User name">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Email">
+        </div>
+        <br>
+        <div id="invoiceDetails">
+            <!-- Dynamically added item rows will go here -->
+        </div>
+        <input type="button" value="Add item" onclick="addItem()">
+        <input type="submit" value="Generate invoice">
+    </form>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
