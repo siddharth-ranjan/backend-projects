@@ -2,15 +2,14 @@
 
 Collection of hackathons from spring boot camp discord. Plus from roadmap.sh
 
-[Task Tracker CLI][https://roadmap.sh/projects/task-tracker]
+[Task Tracker CLI](https://roadmap.sh/projects/task-tracker)
 
-[Personal Blog][https://roadmap.sh/projects/personal-blog]
+[Personal Blog](https://roadmap.sh/projects/personal-blog)
 
-[Caching Proxy][https://roadmap.sh/projects/caching-server]
+[Caching Proxy](https://roadmap.sh/projects/caching-server)
 
-[Markdown Note-Taking App][https://roadmap.sh/projects/markdown-note-taking-app]
+[Markdown Note-Taking App](https://roadmap.sh/projects/markdown-note-taking-app)
 
-[URL Shortening Service][https://roadmap.sh/projects/url-shortening-service]
+[URL Shortening Service](https://roadmap.sh/projects/url-shortening-service)
 
-[Broadcast Service][https://roadmap.sh/projects/broadcast-server]
-
+[Broadcast Service](https://roadmap.sh/projects/broadcast-server)
