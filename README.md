@@ -15,3 +15,5 @@ Collection of hackathons from spring boot camp discord. Plus from roadmap.sh
 [Broadcast Service](https://roadmap.sh/projects/broadcast-server)
 
 [GitHub User Activity](https://roadmap.sh/projects/github-user-activity)
+
+[Expense Tracker](https://roadmap.sh/projects/expense-tracker)
