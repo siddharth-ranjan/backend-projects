@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6fb;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.header {
+    width: 100%;
+    background: #2d3e50;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.editor-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+    padding: 32px 40px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 400px;
+    max-width: 700px;
+    transition: box-shadow 0.2s;
+}
+
+.editor-card:hover {
+    box-shadow: 0 8px 32px rgba(44,62,80,0.16);
+}
+
+textarea {
+    width: 100%;
+    height: 320px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px solid #d1d9e6;
+    padding: 14px;
+    font-size: 1.1rem;
+    resize: vertical;
+    transition: border 0.2s;
+}
+
+textarea:focus {
+    border: 1.5px solid #4a90e2;
+    outline: none;
+}
+
+#status, #version {
+    font-weight: bold;
+    color: #4a90e2;
+}
+
+#error {
+    color: #e74c3c;
+    margin-bottom: 10px;
+    min-height: 24px;
+    transition: color 0.2s;
+}
+
+.info-bar {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+#sendButton {
+    background: linear-gradient(90deg, #4a90e2 0%, #357ab8 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+#sendButton:disabled {
+    background: #b0c4de;
+    cursor: not-allowed;
+}
+
+#sendButton:not(:disabled):hover {
+    background: linear-gradient(90deg, #357ab8 0%, #4a90e2 100%);
+    box-shadow: 0 4px 16px rgba(44,62,80,0.12);
+}
+
