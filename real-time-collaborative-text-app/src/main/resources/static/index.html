@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RT Co-Text App</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+<div class="header">Real-Time Collaborative Editor</div>
+<div class="container">
+    <div class="editor-card">
+        <div class="info-bar">
+            Status: <span id="status">Disconnected</span> | Document Version: <span id="version">N/A</span>
+        </div>
+        <p id="error"></p>
+        <textarea id="documentEditor" placeholder="Loading document..."></textarea>
+        <button id="sendButton" disabled>💾 Save Changes</button>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
