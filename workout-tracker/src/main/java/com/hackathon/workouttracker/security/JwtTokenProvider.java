@@ -1,6 +1,7 @@
 package com.hackathon.workouttracker.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -15,10 +16,10 @@ import java.util.function.Function;
 @Component
 public class JwtTokenProvider {
 
-    @Value("${app.jwt-secret}")
+    @Value("${app.jwt.secret}")
     private String jwtSecret;
 
-    @Value("${app.jwt-expiration-milliseconds}")
+    @Value("${app.jwt.expiration-milliseconds}")
     private long jwtExpirationInMs;
 
     public String generateToken(UserDetails userDetails) {
@@ -35,12 +36,20 @@ public class JwtTokenProvider {
     }
 
     boolean validateToken(String token, UserDetails userDetails) {
-        final String username = getUsernameFromJWT(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        try {
+            final String username = getUsernameFromJWT(token);
+            return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
     }
 
     String getUsernameFromJWT(String token) {
-        return getClaimFromToken(token, Claims::getSubject);
+        try {
+            return getClaimFromToken(token, Claims::getSubject);
+        } catch (Exception e) {
+            throw new JwtException("Token parsing failed");
+        }
     }
 
     private boolean isTokenExpired(String token) {
@@ -56,5 +65,4 @@ public class JwtTokenProvider {
 
         return claimsResolver.apply(claims);
     }
-
 }

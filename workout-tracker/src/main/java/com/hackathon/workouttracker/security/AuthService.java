@@ -4,12 +4,12 @@ import com.hackathon.workouttracker.security.dto.LoginRequest;
 import com.hackathon.workouttracker.security.dto.SignupRequest;
 import com.hackathon.workouttracker.user.UserEntity;
 import com.hackathon.workouttracker.user.UserRepository;
-import org.springframework.http.ResponseEntity;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +29,17 @@ public class AuthService {
         this.userDetailsService = userDetailsService;
         this.jwtTokenProvider = jwtTokenProvider;
     }
+
     public String login(LoginRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-        );
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
-        return jwtTokenProvider.generateToken(userDetails);
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
+            );
+            final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
+            return jwtTokenProvider.generateToken(userDetails);
+        } catch (AuthenticationException e) {
+            throw new IllegalArgumentException("Login Failed. Please try again.");
+        }
     }
 
     public void signup(SignupRequest request) {
@@ -47,6 +52,10 @@ public class AuthService {
                 passwordEncoder.encode(request.getPassword())
         );
 
-        userRepository.save(userEntity);
+        try {
+            userRepository.save(userEntity);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Data integrity violation");
+        }
     }
 }
