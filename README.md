@@ -19,3 +19,5 @@ Collection of hackathons from spring boot camp discord. Plus from roadmap.sh
 [Expense Tracker](https://roadmap.sh/projects/expense-tracker)
 
 [Workout Tracker](https://roadmap.sh/projects/fitness-workout-tracker)
+
+[Real-Time Leaderboard](https://roadmap.sh/projects/realtime-leaderboard-system)
