@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Leaderboard</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Real-Time Leaderboard 🏆</h1>
+
+    <div id="auth-container">
+        <h2>Login or Register</h2>
+        <div id="auth-notifications" class="hidden"></div>
+        <form id="register-form">
+            <h3>Register</h3>
+            <input type="text" id="register-username" placeholder="Username" required>
+            <input type="password" id="register-password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <form id="login-form">
+            <h3>Login</h3>
+            <input type="text" id="login-username" placeholder="Username" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="app-container" class="hidden">
+        <h2 id="welcome-message"></h2>
+        <div id="app-notifications" class="hidden"></div>
+
+        <form id="score-form">
+            <h3>Submit Your Score</h3>
+            <input type="number" id="score-input" placeholder="Enter score" required>
+            <button type="submit">Submit Score</button>
+        </form>
+
+        <button id="my-rank-button">Get My Rank</button>
+        <p id="my-rank-display"></p>
+
+        <h3>Top 10 Leaderboard</h3>
+        <table id="leaderboard-table">
+            <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+        </table>
+        <button id="logout-button" style="width: 100%; margin-top: 20px;">Logout</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
