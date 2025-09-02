@@ -5,11 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -20,13 +20,23 @@ public class LeaderboardService {
     private final RedisTemplate<String, String> redisTemplate;
 
     /**
-     * Submits a score for a user. If the user already has a score, it will be updated.
+     * Submits a score for a user. If the user already has a score, it will only append if it greater than the stored.
      * @param username The user's username.
      * @param score The score to submit.
      */
     public void submitScore(String username, double score) {
         log.info("Submitting score {} for user '{}'", score, username);
-        redisTemplate.opsForZSet().add(LEADERBOARD_KEY, username, score);
+
+        String script =
+                "local current_score = redis.call('ZSCORE', KEYS[1], ARGV[1]) " +
+                "if not current_score or tonumber(ARGV[2]) > tonumber(current_score) then " +
+                        "return redis.call('ZADD', KEYS[1], ARGV[2], ARGV[1]) " +
+                "else " +
+                        "return 0 " +
+                "end";
+
+        RedisScript<Long> redisScript = new DefaultRedisScript<>(script, Long.class);
+        redisTemplate.execute(redisScript, Collections.singletonList(LEADERBOARD_KEY), username, String.valueOf(score));
     }
 
     /**
