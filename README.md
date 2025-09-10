@@ -23,3 +23,5 @@ Collection of hackathons from spring boot camp discord. Plus from roadmap.sh
 [Real-Time Leaderboard](https://roadmap.sh/projects/realtime-leaderboard-system)
 
 [Real-time Chat Application Backend](https://www.guvi.in/blog/best-backend-development-project-ideas/)
+
+[Weather API](https://roadmap.sh/projects/weather-api-wrapper-service)
